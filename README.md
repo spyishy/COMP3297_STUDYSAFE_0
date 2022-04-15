@@ -23,7 +23,7 @@ python manage.py runserver
 
 ---
 
-### URLS (local server)
+### URLs (local server)
 
 Django Admin:
 
@@ -35,14 +35,18 @@ StudySafe Core APIs:
 
 ```
 127.0.0.1:8000/api/venues/
+127.0.0.1:8000/api/venues/<venue_code>/
 127.0.0.1:8000/api/hku-members/
+127.0.0.1:8000/api/hku-members/<hku_id>/
+127.0.0.1:8000/api/entries/
+127.0.0.1:8000/api/exits/
 ```
 
 StudySafe Trace web display:
 
 ```
-127.0.0.1:8000/trace/venues/<hku-id>/<date>/
-127.0.0.1:8000/trace/contacts/<hku-id>/<date>/
+127.0.0.1:8000/trace/venues/<hku_id>/<date>/
+127.0.0.1:8000/trace/contacts/<hku_id>/<date>/
 ```
 
 ---
@@ -58,7 +62,7 @@ http POST 127.0.0.1:8000/api/venues/ venue_code="CPD-LG.03" location="Centennial
 http POST 127.0.0.1:8000/api/venues/ venue_code="CPD-LG.04" location="Centennial" type="LT" capacity="120"
 ```
 
-List all Venue records / view specific Venue record (specify Venue Code):
+Retrieve all or specific Venue records (specify HKU ID):
 
 ```
 http GET 127.0.0.1:8000/api/venues/
@@ -74,7 +78,7 @@ http POST 127.0.0.1:8000/api/hku-members/ hku_id="3030000003" name="C"
 http POST 127.0.0.1:8000/api/hku-members/ hku_id="3030000004" name="D"
 ```
 
-List all HKU Member records / view specific HKU Member record (specify HKU ID):
+Retrieve all or specific HKU Member records (specify HKU ID):
 
 ```
 http GET 127.0.0.1:8000/api/hku-members/
