@@ -1,0 +1,387 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/venues/:
+    get:
+      operationId: listVenues
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createVenue
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Venue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Venue'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - api
+  /api/venues/{venue_code}/:
+    get:
+      operationId: retrieveVenue
+      description: ''
+      parameters:
+      - name: venue_code
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+          description: ''
+      tags:
+      - api
+  /api/hku-members/:
+    get:
+      operationId: listHKUMembers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HKUMember'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createHKUMember
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HKUMember'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HKUMember'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HKUMember'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HKUMember'
+          description: ''
+      tags:
+      - api
+  /api/hku-members/{hku_id}/:
+    get:
+      operationId: retrieveHKUMember
+      description: ''
+      parameters:
+      - name: hku_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HKUMember'
+          description: ''
+      tags:
+      - api
+  /api/entries/:
+    get:
+      operationId: listEntrys
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entry'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createEntry
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Entry'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Entry'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Entry'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+          description: ''
+      tags:
+      - api
+  /api/entries/{entry_hku_id}/:
+    get:
+      operationId: retrieveEntry
+      description: ''
+      parameters:
+      - name: entry_hku_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+          description: ''
+      tags:
+      - api
+  /api/entries/{entry_hku_id}/{date}/:
+    get:
+      operationId: getEntriedVenuesEntry
+      description: ''
+      parameters:
+      - name: entry_hku_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: date
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entry'
+          description: ''
+      tags:
+      - api
+  /api/exits/:
+    get:
+      operationId: listExits
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Exit'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createExit
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Exit'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Exit'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Exit'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exit'
+          description: ''
+      tags:
+      - api
+  /api/exits/{exit_hku_id}/:
+    get:
+      operationId: retrieveExit
+      description: ''
+      parameters:
+      - name: exit_hku_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exit'
+          description: ''
+      tags:
+      - api
+  /api/exits/{exit_hku_id}/{date}/:
+    get:
+      operationId: getExitedVenuesExit
+      description: ''
+      parameters:
+      - name: exit_hku_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: date
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exit'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Venue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        venue_code:
+          type: string
+          maxLength: 20
+        location:
+          type: string
+          maxLength: 150
+        type:
+          type: string
+          maxLength: 2
+        capacity:
+          type: string
+          maxLength: 10
+      required:
+      - venue_code
+      - location
+      - type
+      - capacity
+    HKUMember:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        hku_id:
+          type: string
+          maxLength: 10
+        name:
+          type: string
+          maxLength: 150
+        entered_venue:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        exited_venue:
+          type: array
+          items:
+            type: string
+          readOnly: true
+      required:
+      - hku_id
+      - name
+    Entry:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        entry_date:
+          type: string
+          format: date
+        entry_time:
+          type: string
+        entry_venue_code:
+          type: string
+        entry_hku_id:
+          type: string
+      required:
+      - entry_date
+      - entry_time
+      - entry_venue_code
+      - entry_hku_id
+    Exit:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        exit_date:
+          type: string
+          format: date
+        exit_time:
+          type: string
+        exit_venue_code:
+          type: string
+        exit_hku_id:
+          type: string
+      required:
+      - exit_date
+      - exit_time
+      - exit_venue_code
+      - exit_hku_id

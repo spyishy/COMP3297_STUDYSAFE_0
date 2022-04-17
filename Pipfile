@@ -11,6 +11,8 @@ gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 datetime = "*"
 whitenoise = "*"
+pyyaml = "*"
+uritemplate = "*"
 
 [dev-packages]
 
