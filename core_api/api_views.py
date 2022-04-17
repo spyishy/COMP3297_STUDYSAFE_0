@@ -22,12 +22,12 @@ class HKUMemberViewSet(viewsets.ModelViewSet):
 class EntryViewSet(viewsets.ModelViewSet):
     queryset = Entry.objects.all()
     serializer_class = EntrySerializer
-    lookup_field = 'entry_hku_id'
+    lookup_field = 'id'
     lookup_value_regex = '[^/]+'
     http_method_names = ['get', 'post', 'head']   # to be removed when implementation for remaining methods is included
 
     @action(detail=True, url_path='(?P<date>[^/]+)', methods = ['get'])
-    def get_entried_venues(self, request, id=None, date=None):
+    def get_entry_venues(self, request, id=None, date=None):
         queryset = Entry.objects.filter(entry_hku_id=id).filter(entry_date__range=[(datetime.datetime.strptime(date, "%Y-%m-%d") - datetime.timedelta(days=2)).strftime("%Y-%m-%d"), date]).only("entry_venue_code")
         serializer = EntrySerializer(queryset, many=True)
         return Response([i["entry_venue_code"] for i in serializer.data], status=status.HTTP_200_OK)
@@ -35,12 +35,12 @@ class EntryViewSet(viewsets.ModelViewSet):
 class ExitViewSet(viewsets.ModelViewSet):
     queryset = Exit.objects.all()
     serializer_class = ExitSerializer
-    lookup_field = 'exit_hku_id'
+    lookup_field = 'id'
     lookup_value_regex = '[^/]+'
     http_method_names = ['get', 'post', 'head']   # to be removed when implementation for remaining methods is included
 
     @action(detail=True, url_path='(?P<date>[^/]+)', methods = ['get'])
-    def get_exited_venues(self, request, id=None, date=None):
+    def get_exit_venues(self, request, id=None, date=None):
         queryset = Exit.objects.filter(exit_hku_id=id).filter(exit_date__range=[(datetime.datetime.strptime(date, "%Y-%m-%d") - datetime.timedelta(days=2)).strftime("%Y-%m-%d"), date]).only("exit_venue_code")
         serializer = ExitSerializer(queryset, many=True)
         return Response([i["exit_venue_code"] for i in serializer.data], status=status.HTTP_200_OK)

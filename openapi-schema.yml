@@ -163,15 +163,15 @@ paths:
           description: ''
       tags:
       - api
-  /api/entries/{entry_hku_id}/:
+  /api/entries/{id}/:
     get:
       operationId: retrieveEntry
       description: ''
       parameters:
-      - name: entry_hku_id
+      - name: id
         in: path
         required: true
-        description: ''
+        description: A unique integer value identifying this entry.
         schema:
           type: string
       responses:
@@ -183,15 +183,15 @@ paths:
           description: ''
       tags:
       - api
-  /api/entries/{entry_hku_id}/{date}/:
+  /api/entries/{id}/{date}/:
     get:
-      operationId: getEntriedVenuesEntry
+      operationId: getEntryVenuesEntry
       description: ''
       parameters:
-      - name: entry_hku_id
+      - name: id
         in: path
         required: true
-        description: ''
+        description: A unique integer value identifying this entry.
         schema:
           type: string
       - name: date
@@ -249,15 +249,15 @@ paths:
           description: ''
       tags:
       - api
-  /api/exits/{exit_hku_id}/:
+  /api/exits/{id}/:
     get:
       operationId: retrieveExit
       description: ''
       parameters:
-      - name: exit_hku_id
+      - name: id
         in: path
         required: true
-        description: ''
+        description: A unique integer value identifying this exit.
         schema:
           type: string
       responses:
@@ -269,15 +269,15 @@ paths:
           description: ''
       tags:
       - api
-  /api/exits/{exit_hku_id}/{date}/:
+  /api/exits/{id}/{date}/:
     get:
-      operationId: getExitedVenuesExit
+      operationId: getExitVenuesExit
       description: ''
       parameters:
-      - name: exit_hku_id
+      - name: id
         in: path
         required: true
-        description: ''
+        description: A unique integer value identifying this exit.
         schema:
           type: string
       - name: date
