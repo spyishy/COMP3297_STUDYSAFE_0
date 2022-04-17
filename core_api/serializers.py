@@ -5,13 +5,13 @@ class VenueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venue
         fields = '__all__'
-        lookup_field = 'venue_code'     # unique venue code as lookup field 
+        lookup_field = 'venue_code'     # unique Venue Code as lookup field 
 
 class HKUMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = HKUMember
         fields = '__all__'
-        lookup_field = 'hku_id'         # unique hku id as lookup field 
+        lookup_field = 'hku_id'         # unique HKU ID as lookup field 
 
 class EntrySerializer(serializers.ModelSerializer):
     class Meta:

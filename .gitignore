@@ -1,2 +1,2 @@
-# local environments
 .env
+db.sqlite3
