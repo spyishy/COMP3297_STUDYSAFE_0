@@ -1,5 +1,4 @@
 import requests
-from datetime import datetime as dt, timedelta as td
 from django.views.generic import TemplateView
 
 class ViewVisitedVenues(TemplateView):
@@ -9,7 +8,11 @@ class ViewVisitedVenues(TemplateView):
         id = self.kwargs['id']
         date = self.kwargs['date']
 
-        venues = requests.get("http://127.0.0.1:8000/api/entries/" + str(id) + "/" + date + "/").json()
+        response = requests.get("https://studysafe-b-group-e.herokuapp.com/api/entries/" + str(id) + "/" + date + "/")
+        if response.status_code == 200:
+            venues = response.json()
+        else:
+            venues = requests.get("http://127.0.0.1:8000/api/entries/" + str(id) + "/" + date + "/").json()
         venues = sorted(list(set(venues)))
 
         context = super().get_context_data(**kwargs)
