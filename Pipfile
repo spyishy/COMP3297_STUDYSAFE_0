@@ -9,6 +9,7 @@ djangorestframework = "*"
 requests = "*"
 gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
+datetime = "*"
 
 [dev-packages]
 

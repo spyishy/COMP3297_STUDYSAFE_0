@@ -1,23 +1,22 @@
 import requests
+from datetime import datetime as dt, timedelta as td
 from django.views.generic import TemplateView
 
 class ViewVisitedVenues(TemplateView):
     template_name = "venues.html"
+    
     def get_context_data(self, **kwargs):
-        subject = self.kwargs['id']
+        id = self.kwargs['id']
         date = self.kwargs['date']
 
-        # temporarily retrieve all venues as visited venues
-        response = requests.get("http://127.0.0.1:8000/api/venues/").json()
-        venues = []
-        for venue in response:
-            venues.append(venue['venue_code'])
-        venues = sorted(venues)
+        venues = requests.get("http://127.0.0.1:8000/api/entries/" + str(id) + "/" + date + "/").json()
+        venues = sorted(list(set(venues)))
 
         context = super().get_context_data(**kwargs)
-        context['subject'] = subject # to be refined
-        context['date'] = date # to be refined
+        context['subject'] = str(id)
+        context['date'] = date
         context['venues'] = venues
+
         return context
 
 class ViewCloseContacts(TemplateView):
