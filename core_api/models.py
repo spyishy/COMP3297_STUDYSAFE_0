@@ -30,4 +30,4 @@ class Exit(models.Model):
     exit_date = models.DateField()
     exit_time = models.TimeField()
     def __str__(self):
-        return f'{self.entry_date} {self.entry_time}: {self.entry_hku_id} {self.entry_venue_code}'
+        return f'{self.exit_date} {self.exit_time}: {self.exit_hku_id} {self.exit_venue_code}'
