@@ -1,27 +1,34 @@
 openapi: 3.0.2
 info:
-  title: ''
-  version: ''
+  title: StudySafe Core
+  description: "This is the StudySafe Core API for the record maintenance component\
+    \ of StudySafe. You can manage Venue, HKU Member, Entry and Exit records here.\
+    \ Use the base URL: https://studysafe-b-group-e.herokuapp.com/api/"
+  version: "1.0"
+servers:
+- url: /
 paths:
   /api/venues/:
     get:
+      tags:
+      - Venue
+      description: List all available Venue records.
       operationId: listVenues
-      description: ''
       parameters: []
       responses:
-        '200':
+        "200":
+          description: Returns all Venue records.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Venue'
-          description: ''
-      tags:
-      - api
     post:
+      tags:
+      - Venue
+      description: Create a new Venue record.
       operationId: createVenue
-      description: ''
       parameters: []
       requestBody:
         content:
@@ -35,53 +42,56 @@ paths:
             schema:
               $ref: '#/components/schemas/Venue'
       responses:
-        '201':
+        "201":
+          description: Returns the newly created Venue record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venue'
-          description: ''
-      tags:
-      - api
   /api/venues/{venue_code}/:
     get:
+      tags:
+      - Venue
+      description: "Retrieve a specific Venue record, identified by its unique Venue\
+        \ Code."
       operationId: retrieveVenue
-      description: ''
       parameters:
       - name: venue_code
         in: path
+        description: Venue Code of corresponding Venue.
         required: true
-        description: ''
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
-        '200':
+        "200":
+          description: Returns the requested Venue record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Venue'
-          description: ''
-      tags:
-      - api
   /api/hku-members/:
     get:
+      tags:
+      - HKU Member
+      description: List all available HKU Member records.
       operationId: listHKUMembers
-      description: ''
       parameters: []
       responses:
-        '200':
+        "200":
+          description: Returns all HKU Member records.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/HKUMember'
-          description: ''
-      tags:
-      - api
     post:
+      tags:
+      - HKU Member
+      description: Create a new HKU Member record.
       operationId: createHKUMember
-      description: ''
       parameters: []
       requestBody:
         content:
@@ -95,53 +105,56 @@ paths:
             schema:
               $ref: '#/components/schemas/HKUMember'
       responses:
-        '201':
+        "201":
+          description: Returns the newly created HKU Member record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HKUMember'
-          description: ''
-      tags:
-      - api
   /api/hku-members/{hku_id}/:
     get:
+      tags:
+      - HKU Member
+      description: "Retrieve a specific HKU Member record, identified by its unique\
+        \ HKU ID."
       operationId: retrieveHKUMember
-      description: ''
       parameters:
       - name: hku_id
         in: path
+        description: HKU ID of corresponding HKU Member.
         required: true
-        description: ''
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
-        '200':
+        "200":
+          description: Returns the requested HKU Member record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HKUMember'
-          description: ''
-      tags:
-      - api
   /api/entries/:
     get:
+      tags:
+      - Entry
+      description: List all available Entry records.
       operationId: listEntrys
-      description: ''
       parameters: []
       responses:
-        '200':
+        "200":
+          description: Returns all Entry records.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Entry'
-          description: ''
-      tags:
-      - api
     post:
+      tags:
+      - Entry
+      description: Create a new Entry record.
       operationId: createEntry
-      description: ''
       parameters: []
       requestBody:
         content:
@@ -155,79 +168,86 @@ paths:
             schema:
               $ref: '#/components/schemas/Entry'
       responses:
-        '201':
+        "201":
+          description: Returns the newly created Entry record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
-          description: ''
-      tags:
-      - api
   /api/entries/{id}/:
     get:
+      tags:
+      - Entry
+      description: "Retrieve a specific Entry record, identified by its ID."
       operationId: retrieveEntry
-      description: ''
       parameters:
       - name: id
         in: path
+        description: ID of corresponding Entry record.
         required: true
-        description: A unique integer value identifying this entry.
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
-        '200':
+        "200":
+          description: Returns the requested Entry record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
-          description: ''
-      tags:
-      - api
-  /api/entries/{id}/{date}/:
+  /api/entries/{hku_id}/{date}/:
     get:
+      tags:
+      - Entry
+      description: Retrieve the Entry record(s) corresponding to the venues visited
+        by an infected HKU member during the infection period.
       operationId: getEntryVenuesEntry
-      description: ''
       parameters:
-      - name: id
+      - name: hku_id
         in: path
+        description: HKU ID of the HKU member.
         required: true
-        description: A unique integer value identifying this entry.
+        style: simple
+        explode: false
         schema:
           type: string
       - name: date
         in: path
+        description: Date of diagnosis or onset of symptoms.
         required: true
-        description: ''
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
-        '200':
+        "200":
+          description: Returns the requested Entry record(s).
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Entry'
-          description: ''
-      tags:
-      - api
   /api/exits/:
     get:
+      tags:
+      - Exit
+      description: List all available Exit records.
       operationId: listExits
-      description: ''
       parameters: []
       responses:
-        '200':
+        "200":
+          description: Returns all Exit records.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Exit'
-          description: ''
-      tags:
-      - api
     post:
+      tags:
+      - Exit
+      description: Create a new Exit record.
       operationId: createExit
-      description: ''
       parameters: []
       requestBody:
         content:
@@ -241,146 +261,186 @@ paths:
             schema:
               $ref: '#/components/schemas/Exit'
       responses:
-        '201':
+        "201":
+          description: Returns the newly created Exit record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Exit'
-          description: ''
-      tags:
-      - api
   /api/exits/{id}/:
     get:
+      tags:
+      - Exit
+      description: "Retrieve a specific Exit record, identified by its ID."
       operationId: retrieveExit
-      description: ''
       parameters:
       - name: id
         in: path
+        description: ID of corresponding Exit record.
         required: true
-        description: A unique integer value identifying this exit.
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
-        '200':
+        "200":
+          description: Returns the requested Exit record.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Exit'
-          description: ''
-      tags:
-      - api
-  /api/exits/{id}/{date}/:
+  /api/exits/{hku_id}/{date}/:
     get:
+      tags:
+      - Exit
+      description: Retrieve the Exit record(s) corresponding to the venues visited
+        by an infected HKU member during the infection period.
       operationId: getExitVenuesExit
-      description: ''
       parameters:
-      - name: id
+      - name: hku_id
         in: path
+        description: HKU ID of the HKU member.
         required: true
-        description: A unique integer value identifying this exit.
+        style: simple
+        explode: false
         schema:
           type: string
       - name: date
         in: path
+        description: Date of diagnosis or onset of symptoms.
         required: true
-        description: ''
+        style: simple
+        explode: false
         schema:
           type: string
       responses:
-        '200':
+        "200":
+          description: Returns the requested Exit record(s).
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Exit'
-          description: ''
-      tags:
-      - api
 components:
   schemas:
     Venue:
+      required:
+      - capacity
+      - location
+      - type
+      - venue_code
       type: object
       properties:
         id:
           type: integer
           readOnly: true
         venue_code:
-          type: string
           maxLength: 20
+          type: string
+          description: Venue Code
+          example: CPD-LG.09
         location:
-          type: string
           maxLength: 150
-        type:
           type: string
+          description: Location of Venue
+          example: "Centennial Campus, Central Podium Levels - Lower Ground"
+        type:
           maxLength: 2
+          type: string
+          description: "Type of Venue, currently: LT (Lecture Theatre), CR (Classroom),\
+            \ TR (Tutorial Room)"
+          example: LT
         capacity:
           type: integer
-      required:
-      - venue_code
-      - location
-      - type
-      - capacity
+          description: Capacity of Venue
+          example: 170
     HKUMember:
+      required:
+      - hku_id
+      - name
       type: object
       properties:
         id:
           type: integer
           readOnly: true
         hku_id:
-          type: string
           maxLength: 10
-        name:
           type: string
+          description: HKU ID
+          example: "3030012345"
+        name:
           maxLength: 150
+          type: string
+          description: Name of HKU Member
+          example: "Lok, Wing Ching"
         entered_venue:
           type: array
+          readOnly: true
           items:
             type: string
-          readOnly: true
         exited_venue:
           type: array
+          readOnly: true
           items:
             type: string
-          readOnly: true
-      required:
-      - hku_id
-      - name
     Entry:
+      required:
+      - entry_date
+      - entry_hku_id
+      - entry_time
+      - entry_venue_code
       type: object
       properties:
         id:
           type: integer
           readOnly: true
         entry_date:
+          pattern: "([12]\\d{3})-(0[1-9]|1[012])-(0\\d|[12][0-9]|3[01])"
           type: string
-          format: date
+          description: Date of Entry
+          example: 2022-04-16
         entry_time:
+          pattern: "([01]\\d|2[0123]):([012345]\\d):([012345]\\d)"
           type: string
+          description: Time of Entry
+          example: 19:43:20
         entry_venue_code:
+          maxLength: 20
           type: string
+          description: Venue Code
+          example: CPD-LG.09
         entry_hku_id:
+          maxLength: 10
           type: string
-      required:
-      - entry_date
-      - entry_time
-      - entry_venue_code
-      - entry_hku_id
+          description: HKU ID
+          example: "3030012345"
     Exit:
+      required:
+      - exit_date
+      - exit_hku_id
+      - exit_time
+      - exit_venue_code
       type: object
       properties:
         id:
           type: integer
           readOnly: true
         exit_date:
+          pattern: "([12]\\d{3})-(0[1-9]|1[012])-(0\\d|[12][0-9]|3[01])"
           type: string
-          format: date
+          description: Date of Exit
+          example: 2022-04-16
         exit_time:
+          pattern: "([01]\\d|2[0123]):([012345]\\d):([012345]\\d)"
           type: string
+          description: Time of Exit
+          example: 19:43:20
         exit_venue_code:
+          maxLength: 20
           type: string
+          description: Venue Code
+          example: CPD-LG.09
         exit_hku_id:
+          maxLength: 10
           type: string
-      required:
-      - exit_date
-      - exit_time
-      - exit_venue_code
-      - exit_hku_id
+          description: HKU ID
+          example: "3030012345"
