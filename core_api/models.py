@@ -4,7 +4,7 @@ class Venue(models.Model):
     venue_code = models.CharField(max_length=20, unique=True)
     location = models.CharField(max_length=150)
     type = models.CharField(max_length=2)
-    capacity = models.CharField(max_length=10)
+    capacity = models.IntegerField()
     def __str__(self):
         return f'{self.venue_code}'
 
@@ -22,7 +22,7 @@ class Entry(models.Model):
     entry_date = models.DateField()
     entry_time = models.TimeField()
     def __str__(self):
-        return f'{self.entry_hku_id} {self.entry_venue_code} {self.entry_date} {self.entry_time}'
+        return f'{self.entry_date} {self.entry_time}: {self.entry_hku_id} {self.entry_venue_code}'
 
 class Exit(models.Model):
     exit_venue_code = models.ForeignKey(Venue, to_field='venue_code', on_delete=models.CASCADE)
@@ -30,4 +30,4 @@ class Exit(models.Model):
     exit_date = models.DateField()
     exit_time = models.TimeField()
     def __str__(self):
-        return f'{self.exit_hku_id} {self.exit_venue_code} {self.exit_date} {self.exit_time}'
+        return f'{self.entry_date} {self.entry_time}: {self.entry_hku_id} {self.entry_venue_code}'

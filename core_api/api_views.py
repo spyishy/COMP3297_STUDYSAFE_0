@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Venue, HKUMember, Entry, Exit
-from .serializers import VenueSerializer, HKUMemberSerializer, EntrySerializer, ExitSerializer
+from .serializers import *
 import datetime
 
 class VenueViewSet(viewsets.ModelViewSet):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Venue, HKUMember, Entry, Exit
+from .models import *
 
 class VenueSerializer(serializers.ModelSerializer):
     class Meta:
