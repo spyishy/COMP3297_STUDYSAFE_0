@@ -313,8 +313,7 @@ components:
           type: string
           maxLength: 2
         capacity:
-          type: string
-          maxLength: 10
+          type: integer
       required:
       - venue_code
       - location
