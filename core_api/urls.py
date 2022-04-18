@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .api_views import VenueViewSet, HKUMemberViewSet, EntryViewSet, ExitViewSet
+from .api_views import *
 
 router = DefaultRouter()
 router.register(r'venues', VenueViewSet, 'venue')

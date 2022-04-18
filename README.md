@@ -9,6 +9,7 @@ Create virtual environment and install dependencies:
 ```
 pipenv --three
 pipenv install
+pipenv shell
 ```
 
 Run server locally:
